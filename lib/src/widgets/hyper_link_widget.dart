@@ -8,11 +8,11 @@ class HyperLinkWidget extends StatefulWidget {
   final int maxLines;
 
   HyperLinkWidget({
-    super.key,
+    Key? key,
     required this.text,
     this.style,
     this.maxLines = 1,
-  });
+  }) : super(key: key);
 
   @override
   State<HyperLinkWidget> createState() => _HyperLinkWidgetState();

@@ -9,10 +9,10 @@ enum DeviceSize { mobile, tablet, desktop }
 extension LayoutUtils on BoxConstraints {
   /// returns DeviceSize
   DeviceSize get device {
-    if (maxWidth >= desktopBreakpointGlobal) {
+    if (this.maxWidth >= desktopBreakpointGlobal) {
       return DeviceSize.desktop;
     }
-    if (maxWidth >= tabletBreakpointGlobal) {
+    if (this.maxWidth >= tabletBreakpointGlobal) {
       return DeviceSize.tablet;
     }
     return DeviceSize.mobile;

@@ -24,8 +24,8 @@ class Blur extends StatelessWidget {
     this.color = Colors.transparent,
     this.borderRadius,
     this.clipBehavior = Clip.antiAlias,
-    super.key,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

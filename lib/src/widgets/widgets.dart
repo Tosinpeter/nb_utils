@@ -33,8 +33,7 @@ Future<bool?> showConfirmDialog<bool>(
           },
           child: Text(
             positiveText.validate(),
-            style: primaryTextStyle(
-                color: buttonColor ?? Theme.of(_).primaryColor),
+            style: primaryTextStyle(color: buttonColor ?? Theme.of(_).primaryColor),
           ),
         ),
       ],
@@ -51,12 +50,12 @@ Future<T?> showInDialog<T>(
   ShapeBorder? shape,
   TextStyle? titleTextStyle,
   EdgeInsetsGeometry? contentPadding,
-  //bool scrollable = false,
+  bool scrollable = false,
   Color? backgroundColor,
   DialogAnimation dialogAnimation = DialogAnimation.DEFAULT,
   double? elevation,
   Color? barrierColor,
-  //EdgeInsets insetPadding = const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
+  EdgeInsets insetPadding = const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
   List<Widget>? actions,
   bool barrierDismissible = true,
   bool hideSoftKeyboard = true,
@@ -83,13 +82,13 @@ Future<T?> showInDialog<T>(
           content: builder != null ? builder.call(_) : child,
           shape: shape ?? defaultDialogShape,
           title: title,
+          surfaceTintColor: Colors.transparent,
           titleTextStyle: titleTextStyle,
-          contentPadding:
-              contentPadding ?? EdgeInsets.fromLTRB(24.0, 20.0, 24.0, 24.0),
-          //scrollable: scrollable,
+          contentPadding: contentPadding ?? EdgeInsets.fromLTRB(24.0, 20.0, 24.0, 24.0),
+          scrollable: scrollable,
           backgroundColor: backgroundColor,
           elevation: elevation ?? defaultElevation.toDouble(),
-          //insetPadding: insetPadding,
+          insetPadding: insetPadding,
           actions: actions,
         ),
       );
@@ -122,16 +121,12 @@ AppBar appBarWidget(
     title: titleWidget ??
         Text(
           title,
-          style: titleTextStyle ??
-              (boldTextStyle(
-                  color: textColor ?? textPrimaryColorGlobal, size: textSize)),
+          style: titleTextStyle ?? (boldTextStyle(color: textColor ?? textPrimaryColorGlobal, size: textSize)),
         ),
     actions: actions,
     automaticallyImplyLeading: showBack,
     backgroundColor: color ?? appBarBackgroundColorGlobal,
-    leading: showBack
-        ? (backWidget ?? BackButton(color: textColor ?? textPrimaryColorGlobal))
-        : null,
+    leading: showBack ? (backWidget ?? BackButton(color: textColor ?? textPrimaryColorGlobal)) : null,
     shadowColor: shadowColor,
     elevation: elevation ?? defaultAppBarElevation,
     systemOverlayStyle: systemUiOverlayStyle,
@@ -148,10 +143,9 @@ Widget snapWidgetHelper<T>(
   String? defaultErrorMessage,
   @Deprecated('Do not use this') bool checkHasData = false,
   Widget Function(String)? errorBuilder,
-  bool showErrorLog = false,
 }) {
   if (snap.hasError) {
-    if (showErrorLog) log('nb_utils->snapWidgetHelper(): ${snap.error}');
+    log(snap.error);
     if (errorBuilder != null) {
       return errorBuilder.call(defaultErrorMessage ?? snap.error.toString());
     }
@@ -169,6 +163,5 @@ Widget snapWidgetHelper<T>(
 
 /// Returns true is snapshot is loading
 bool isSnapshotLoading(AsyncSnapshot snap, {bool checkHasData = false}) {
-  return snap.connectionState == ConnectionState.active ||
-      snap.connectionState == ConnectionState.waiting;
+  return snap.connectionState == ConnectionState.active || snap.connectionState == ConnectionState.waiting;
 }

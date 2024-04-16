@@ -18,8 +18,8 @@ class RichTextWidget extends StatelessWidget {
     this.textDirection,
     this.strutStyle,
     this.locale,
-    super.key,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

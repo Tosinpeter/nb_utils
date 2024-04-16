@@ -10,11 +10,11 @@ export 'package:connectivity_plus/connectivity_plus.dart';
 export 'package:fluttertoast/fluttertoast.dart';
 export 'package:shared_preferences/shared_preferences.dart';
 
-export 'src/customPaints/google_logo_painter.dart';
 export 'src/chatgpt/chat_gpt.dart';
 export 'src/chatgpt/chat_gpt_component.dart';
-export 'src/chatgpt/chat_gpt_strings.dart';
 export 'src/chatgpt/chat_gpt_models.dart';
+export 'src/chatgpt/chat_gpt_strings.dart';
+export 'src/customPaints/google_logo_painter.dart';
 export 'src/deprecated_widgets.dart';
 export 'src/extensions/bool_extensions.dart';
 export 'src/extensions/color_extensions.dart';
@@ -42,7 +42,6 @@ export 'src/utils/decorations.dart';
 export 'src/utils/enums.dart';
 export 'src/utils/jwt_decoder.dart';
 export 'src/utils/line_icons.dart';
-export 'src/utils/get_ip_address.dart';
 export 'src/utils/network_utils.dart';
 export 'src/utils/pattern.dart';
 export 'src/utils/shared_pref.dart';
@@ -71,8 +70,8 @@ export 'src/widgets/language_list_widget.dart';
 export 'src/widgets/loader_widget.dart';
 export 'src/widgets/marquee_widget.dart';
 export 'src/widgets/no_data_widget.dart';
-export 'src/widgets/overlay_custom_widget.dart';
 export 'src/widgets/otp_text_field.dart';
+export 'src/widgets/overlay_custom_widget.dart';
 export 'src/widgets/placeholder_widget.dart';
 export 'src/widgets/rating_bar_widget.dart';
 export 'src/widgets/read_more_text.dart';
@@ -178,15 +177,13 @@ Future<void> initialize({
 }) async {
   sharedPreferences = await SharedPreferences.getInstance();
 
-  defaultAppButtonShapeBorder =
-      RoundedRectangleBorder(borderRadius: radius(defaultAppButtonRadius));
+  defaultAppButtonShapeBorder = RoundedRectangleBorder(borderRadius: radius(defaultAppButtonRadius));
 
   defaultDialogShape = dialogShape(defaultDialogBorderRadius);
 
   localeLanguageList = aLocaleLanguageList ?? [];
 
-  selectedLanguageDataModel =
-      getSelectedLanguageModel(defaultLanguage: defaultLanguage);
+  selectedLanguageDataModel = getSelectedLanguageModel(defaultLanguage: defaultLanguage);
 }
 
 /// nb_utils class
@@ -208,14 +205,12 @@ Future<T?> push<T>(
 }) async {
   if (isNewTask) {
     return await Navigator.of(getContext).pushAndRemoveUntil(
-      buildPageRoute(
-          widget, pageRouteAnimation ?? pageRouteAnimationGlobal, duration),
+      buildPageRoute(widget, pageRouteAnimation ?? pageRouteAnimationGlobal, duration),
       (route) => false,
     );
   } else {
     return await Navigator.of(getContext).push(
-      buildPageRoute(
-          widget, pageRouteAnimation ?? pageRouteAnimationGlobal, duration),
+      buildPageRoute(widget, pageRouteAnimation ?? pageRouteAnimationGlobal, duration),
     );
   }
 }

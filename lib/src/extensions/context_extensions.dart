@@ -84,10 +84,6 @@ extension ContextExtensions on BuildContext {
 
   bool get isPortrait => orientation == Orientation.portrait;
 
-  bool get canPop => Navigator.canPop(this);
-
-  void pop<T extends Object>([T? result]) => Navigator.pop(this, result);
-
   TargetPlatform get platform => Theme.of(this).platform;
 
   bool get isAndroid => platform == TargetPlatform.android;

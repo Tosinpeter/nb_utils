@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 
-/// Text Styles
+/// Styles
 
-/// Returns a TextStyle with bold weight.
+// Bold Text Style
 TextStyle boldTextStyle({
   int? size,
   Color? color,
@@ -36,7 +36,7 @@ TextStyle boldTextStyle({
   );
 }
 
-/// Returns a TextStyle with primary color and default settings.
+// Primary Text Style
 TextStyle primaryTextStyle({
   int? size,
   Color? color,
@@ -69,7 +69,7 @@ TextStyle primaryTextStyle({
   );
 }
 
-/// Returns a TextStyle with secondary color and default settings.
+// Secondary Text Style
 TextStyle secondaryTextStyle({
   int? size,
   Color? color,

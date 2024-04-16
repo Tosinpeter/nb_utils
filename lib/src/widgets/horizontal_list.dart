@@ -25,8 +25,8 @@ class HorizontalList extends StatelessWidget {
     this.reverse = false,
     this.wrapAlignment,
     this.crossAxisAlignment,
-    super.key,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

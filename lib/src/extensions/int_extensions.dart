@@ -33,37 +33,37 @@ extension IntExtensions on int? {
 
   /// Returns microseconds duration
   /// 5.microseconds
-  Duration get microseconds => Duration(microseconds: validate());
+  Duration get microseconds => Duration(microseconds: this.validate());
 
   /// Returns milliseconds duration
   /// ```dart
   /// 5.milliseconds
   /// ```
-  Duration get milliseconds => Duration(milliseconds: validate());
+  Duration get milliseconds => Duration(milliseconds: this.validate());
 
   /// Returns seconds duration
   /// ```dart
   /// 5.seconds
   /// ```
-  Duration get seconds => Duration(seconds: validate());
+  Duration get seconds => Duration(seconds: this.validate());
 
   /// Returns minutes duration
   /// ```dart
   /// 5.minutes
   /// ```
-  Duration get minutes => Duration(minutes: validate());
+  Duration get minutes => Duration(minutes: this.validate());
 
   /// Returns hours duration
   /// ```dart
   /// 5.hours
   /// ```
-  Duration get hours => Duration(hours: validate());
+  Duration get hours => Duration(hours: this.validate());
 
   /// Returns days duration
   /// ```dart
   /// 5.days
   /// ```
-  Duration get days => Duration(days: validate());
+  Duration get days => Duration(days: this.validate());
 
   /// Returns if a number is between `first` and `second`
   /// ```dart
@@ -72,9 +72,9 @@ extension IntExtensions on int? {
   /// ```
   bool isBetween(num first, num second) {
     if (first <= second) {
-      return validate() >= first && validate() <= second;
+      return this.validate() >= first && this.validate() <= second;
     } else {
-      return validate() >= second && validate() <= first;
+      return this.validate() >= second && this.validate() <= first;
     }
   }
 

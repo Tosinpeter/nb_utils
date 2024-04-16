@@ -19,8 +19,8 @@ class Responsive extends StatelessWidget {
     this.width,
     this.minHeight,
     this.defaultWidget,
-    super.key,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

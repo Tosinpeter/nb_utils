@@ -5,15 +5,7 @@ import 'package:nb_utils/nb_utils.dart';
 enum DialogType { CONFIRMATION, ACCEPT, DELETE, UPDATE, ADD, RETRY }
 
 /// Enum for Dialog Animation
-enum DialogAnimation {
-  DEFAULT,
-  ROTATE,
-  SLIDE_TOP_BOTTOM,
-  SLIDE_BOTTOM_TOP,
-  SLIDE_LEFT_RIGHT,
-  SLIDE_RIGHT_LEFT,
-  SCALE
-}
+enum DialogAnimation { DEFAULT, ROTATE, SLIDE_TOP_BOTTOM, SLIDE_BOTTOM_TOP, SLIDE_LEFT_RIGHT, SLIDE_RIGHT_LEFT, SCALE }
 
 /// dialog primary color
 Color getDialogPrimaryColor(
@@ -108,8 +100,7 @@ Widget getIcon(DialogType dialogType, {double? size}) {
       icon = Icon(Icons.done, size: size ?? 20, color: Colors.white);
       break;
     case DialogType.DELETE:
-      icon = Icon(Icons.delete_forever_outlined,
-          size: size ?? 20, color: Colors.white);
+      icon = Icon(Icons.delete_forever_outlined, size: size ?? 20, color: Colors.white);
       break;
     case DialogType.UPDATE:
       icon = Icon(Icons.edit, size: size ?? 20, color: Colors.white);
@@ -133,8 +124,7 @@ Widget? getCenteredImage(
     case DialogType.CONFIRMATION:
       widget = Container(
         decoration: BoxDecoration(
-          color: getDialogPrimaryColor(context, dialogType, primaryColor)
-              .withOpacity(0.2),
+          color: getDialogPrimaryColor(context, dialogType, primaryColor).withOpacity(0.2),
           shape: BoxShape.circle,
         ),
         child: Icon(
@@ -148,8 +138,7 @@ Widget? getCenteredImage(
     case DialogType.DELETE:
       widget = Container(
         decoration: BoxDecoration(
-          color: getDialogPrimaryColor(context, dialogType, primaryColor)
-              .withOpacity(0.2),
+          color: getDialogPrimaryColor(context, dialogType, primaryColor).withOpacity(0.2),
           shape: BoxShape.circle,
         ),
         child: Icon(
@@ -163,8 +152,7 @@ Widget? getCenteredImage(
     case DialogType.UPDATE:
       widget = Container(
         decoration: BoxDecoration(
-          color: getDialogPrimaryColor(context, dialogType, primaryColor)
-              .withOpacity(0.2),
+          color: getDialogPrimaryColor(context, dialogType, primaryColor).withOpacity(0.2),
           shape: BoxShape.circle,
         ),
         child: Icon(
@@ -179,8 +167,7 @@ Widget? getCenteredImage(
     case DialogType.ACCEPT:
       widget = Container(
         decoration: BoxDecoration(
-          color: getDialogPrimaryColor(context, dialogType, primaryColor)
-              .withOpacity(0.2),
+          color: getDialogPrimaryColor(context, dialogType, primaryColor).withOpacity(0.2),
           shape: BoxShape.circle,
         ),
         child: Icon(
@@ -229,8 +216,7 @@ Widget defaultPlaceHolder(
     height: height,
     width: width,
     decoration: BoxDecoration(
-      color: getDialogPrimaryColor(context, dialogType, primaryColor)
-          .withOpacity(0.2),
+      color: getDialogPrimaryColor(context, dialogType, primaryColor).withOpacity(0.2),
     ),
     alignment: Alignment.center,
     child: child ?? getCenteredImage(context, dialogType, primaryColor),
@@ -284,8 +270,7 @@ Widget buildTitleWidget(
             shape: shape,
             child: Loader(
               value: loadingProgress.expectedTotalBytes != null
-                  ? loadingProgress.cumulativeBytesLoaded /
-                      loadingProgress.expectedTotalBytes!
+                  ? loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes!
                   : null,
             ),
           );
@@ -325,6 +310,7 @@ Future<bool?> showConfirmDialogCustom(
   bool cancelable = true,
   Color? barrierColor,
   DialogType dialogType = DialogType.CONFIRMATION,
+  EdgeInsets insetPadding = const EdgeInsets.symmetric(horizontal: 25.0, vertical: 18.0),
   DialogAnimation dialogAnimation = DialogAnimation.DEFAULT,
   Duration? transitionDuration,
   Curve curve = Curves.easeInBack,
@@ -348,6 +334,8 @@ Future<bool?> showConfirmDialogCustom(
         child: AlertDialog(
           shape: shape ?? dialogShape(),
           titlePadding: EdgeInsets.zero,
+          insetPadding: insetPadding,
+          surfaceTintColor: Colors.white,
           backgroundColor: _.cardColor,
           elevation: defaultElevation.toDouble(),
           title: buildTitleWidget(
@@ -359,8 +347,7 @@ Future<bool?> showConfirmDialogCustom(
             width ?? customDialogWidth,
             centerImage,
             shape,
-          ).cornerRadiusWithClipRRectOnly(
-              topLeft: defaultRadius.toInt(), topRight: defaultRadius.toInt()),
+          ).cornerRadiusWithClipRRectOnly(topLeft: defaultRadius.toInt(), topRight: defaultRadius.toInt()),
           content: Container(
             width: width ?? customDialogWidth,
             color: Colors.transparent,
@@ -383,7 +370,9 @@ Future<bool?> showConfirmDialogCustom(
                 Row(
                   children: [
                     AppButton(
+                      height: 43,
                       elevation: 0,
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
                       shapeBorder: RoundedRectangleBorder(
                         borderRadius: radius(defaultAppButtonRadius),
                         side: BorderSide(color: viewLineColor),
@@ -400,9 +389,7 @@ Future<bool?> showConfirmDialogCustom(
                           6.width,
                           Text(
                             negativeText ?? 'Cancel',
-                            style: boldTextStyle(
-                                color: negativeTextColor ??
-                                    textPrimaryColorGlobal),
+                            style: boldTextStyle(color: negativeTextColor ?? textPrimaryColorGlobal),
                           ),
                         ],
                       ).fit(),
@@ -414,7 +401,9 @@ Future<bool?> showConfirmDialogCustom(
                     ).expand(),
                     16.width,
                     AppButton(
+                      height: 43,
                       elevation: 0,
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
                       color: getDialogPrimaryColor(_, dialogType, primaryColor),
                       shapeBorder: RoundedRectangleBorder(
                         borderRadius: radius(defaultAppButtonRadius),
@@ -426,8 +415,7 @@ Future<bool?> showConfirmDialogCustom(
                           6.width,
                           Text(
                             positiveText ?? getPositiveText(dialogType),
-                            style: boldTextStyle(
-                                color: positiveTextColor ?? Colors.white),
+                            style: boldTextStyle(color: positiveTextColor ?? Colors.white),
                           ),
                         ],
                       ).fit(),

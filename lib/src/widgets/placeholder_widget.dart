@@ -35,8 +35,8 @@ class PlaceHolderWidget extends StatelessWidget {
     this.boxShadow,
     this.gradient,
     this.child,
-    super.key,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

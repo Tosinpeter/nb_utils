@@ -18,8 +18,8 @@ class Marquee extends StatelessWidget {
     this.backDuration = const Duration(milliseconds: 5000),
     this.pauseDuration = const Duration(milliseconds: 2000),
     this.directionMarguee = DirectionMarguee.TwoDirection,
-    super.key,
-  });
+    Key? key,
+  }) : super(key: key);
 
   final ScrollController scrollController = ScrollController();
 
@@ -27,14 +27,13 @@ class Marquee extends StatelessWidget {
     while (true) {
       if (scrollController.hasClients) {
         await Future.delayed(pauseDuration);
-        if (scrollController.hasClients) {
+        if (scrollController.hasClients)
           await scrollController.animateTo(
               scrollController.position.maxScrollExtent,
               duration: animationDuration,
               curve: Curves.easeIn);
-        }
         await Future.delayed(pauseDuration);
-        if (scrollController.hasClients) {
+        if (scrollController.hasClients)
           switch (directionMarguee) {
             case DirectionMarguee.oneDirection:
               scrollController.jumpTo(
@@ -46,7 +45,6 @@ class Marquee extends StatelessWidget {
                   duration: backDuration, curve: Curves.easeOut);
               break;
           }
-        }
       } else {
         await Future.delayed(pauseDuration);
       }

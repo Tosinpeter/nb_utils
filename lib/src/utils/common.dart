@@ -58,8 +58,7 @@ void toasty(
 
   FToast().showToast(
     child: Container(
-      child: Text(text.validate(),
-          style: boldTextStyle(color: textColor ?? defaultToastTextColor)),
+      child: Text(text.validate(), style: boldTextStyle(color: textColor ?? defaultToastTextColor)),
       decoration: BoxDecoration(
         color: bgColor ?? defaultToastBackgroundColor,
         boxShadow: defaultBoxShadow(),
@@ -200,19 +199,14 @@ String getSocialMediaLink(LinkProvider linkProvider, {String url = ''}) {
   }
 }
 
-/// Converts degrees to radians.
 const double degrees2Radians = pi / 180.0;
 
-/// Converts degrees to radians.
 double radians(double degrees) => degrees * degrees2Radians;
 
-/// Executes a function after the build is created.
 void afterBuildCreated(Function()? onCreated) {
-  makeNullable(SchedulerBinding.instance)!
-      .addPostFrameCallback((_) => onCreated?.call());
+  makeNullable(SchedulerBinding.instance)!.addPostFrameCallback((_) => onCreated?.call());
 }
 
-/// Widget wrapper for animated dialog transitions.
 Widget dialogAnimatedWrapperWidget({
   required Animation<double> animation,
   required Widget child,
@@ -220,7 +214,6 @@ Widget dialogAnimatedWrapperWidget({
   required Curve curve,
 }) {
   switch (dialogAnimation) {
-    // Animation for rotating the dialog.
     case DialogAnimation.ROTATE:
       return Transform.rotate(
         angle: radians(animation.value * 360),
@@ -230,7 +223,6 @@ Widget dialogAnimatedWrapperWidget({
         ),
       );
 
-    // Animation for sliding the dialog from top to bottom.
     case DialogAnimation.SLIDE_TOP_BOTTOM:
       final curvedValue = curve.transform(animation.value) - 1.0;
 
@@ -242,56 +234,44 @@ Widget dialogAnimatedWrapperWidget({
         ),
       );
 
-    // Animation for scaling the dialog.
     case DialogAnimation.SCALE:
       return Transform.scale(
         scale: animation.value,
         child: FadeTransition(opacity: animation, child: child),
       );
 
-    // Animation for sliding the dialog from bottom to top.
     case DialogAnimation.SLIDE_BOTTOM_TOP:
       return SlideTransition(
-        position: Tween(begin: Offset(0, 1), end: Offset.zero)
-            .chain(CurveTween(curve: curve))
-            .animate(animation),
+        position: Tween(begin: Offset(0, 1), end: Offset.zero).chain(CurveTween(curve: curve)).animate(animation),
         child: Opacity(
           opacity: animation.value,
           child: FadeTransition(opacity: animation, child: child),
         ),
       );
 
-    // Animation for sliding the dialog from left to right.
     case DialogAnimation.SLIDE_LEFT_RIGHT:
       return SlideTransition(
-        position: Tween(begin: Offset(1.0, 0.0), end: Offset.zero)
-            .chain(CurveTween(curve: curve))
-            .animate(animation),
+        position: Tween(begin: Offset(1.0, 0.0), end: Offset.zero).chain(CurveTween(curve: curve)).animate(animation),
         child: Opacity(
           opacity: animation.value,
           child: FadeTransition(opacity: animation, child: child),
         ),
       );
 
-    // Animation for sliding the dialog from right to left.
     case DialogAnimation.SLIDE_RIGHT_LEFT:
       return SlideTransition(
-        position: Tween(begin: Offset(-1, 0), end: Offset.zero)
-            .chain(CurveTween(curve: curve))
-            .animate(animation),
+        position: Tween(begin: Offset(-1, 0), end: Offset.zero).chain(CurveTween(curve: curve)).animate(animation),
         child: Opacity(
           opacity: animation.value,
           child: FadeTransition(opacity: animation, child: child),
         ),
       );
 
-    // Default fade animation.
     case DialogAnimation.DEFAULT:
       return FadeTransition(opacity: animation, child: child);
   }
 }
 
-/// Builds a page route with the specified animation.
 Route<T> buildPageRoute<T>(
   Widget child,
   PageRouteAnimation? pageRouteAnimation,
@@ -299,7 +279,6 @@ Route<T> buildPageRoute<T>(
 ) {
   if (pageRouteAnimation != null) {
     if (pageRouteAnimation == PageRouteAnimation.Fade) {
-      // Fade animation for page route.
       return PageRouteBuilder(
         pageBuilder: (c, a1, a2) => child,
         transitionsBuilder: (c, anim, a2, child) {
@@ -308,17 +287,14 @@ Route<T> buildPageRoute<T>(
         transitionDuration: duration ?? pageRouteTransitionDurationGlobal,
       );
     } else if (pageRouteAnimation == PageRouteAnimation.Rotate) {
-      // Rotation animation for page route.
       return PageRouteBuilder(
         pageBuilder: (c, a1, a2) => child,
         transitionsBuilder: (c, anim, a2, child) {
-          return RotationTransition(
-              child: child, turns: ReverseAnimation(anim));
+          return RotationTransition(child: child, turns: ReverseAnimation(anim));
         },
         transitionDuration: duration ?? pageRouteTransitionDurationGlobal,
       );
     } else if (pageRouteAnimation == PageRouteAnimation.Scale) {
-      // Scale animation for page route.
       return PageRouteBuilder(
         pageBuilder: (c, a1, a2) => child,
         transitionsBuilder: (c, anim, a2, child) {
@@ -327,7 +303,6 @@ Route<T> buildPageRoute<T>(
         transitionDuration: duration ?? pageRouteTransitionDurationGlobal,
       );
     } else if (pageRouteAnimation == PageRouteAnimation.Slide) {
-      // Slide animation for page route.
       return PageRouteBuilder(
         pageBuilder: (c, a1, a2) => child,
         transitionsBuilder: (c, anim, a2, child) {
@@ -342,7 +317,6 @@ Route<T> buildPageRoute<T>(
         transitionDuration: duration ?? pageRouteTransitionDurationGlobal,
       );
     } else if (pageRouteAnimation == PageRouteAnimation.SlideBottomTop) {
-      // Slide from bottom to top animation for page route.
       return PageRouteBuilder(
         pageBuilder: (c, a1, a2) => child,
         transitionsBuilder: (c, anim, a2, child) {
@@ -358,11 +332,9 @@ Route<T> buildPageRoute<T>(
       );
     }
   }
-  // Default page route.
   return MaterialPageRoute<T>(builder: (_) => child);
 }
 
-/// Provides dynamic padding for app buttons based on the context.
 EdgeInsets dynamicAppButtonPadding(BuildContext context) {
   if (context.isDesktop()) {
     return EdgeInsets.symmetric(vertical: 20, horizontal: 20);
@@ -373,31 +345,25 @@ EdgeInsets dynamicAppButtonPadding(BuildContext context) {
   }
 }
 
-/// Enum representing types of bottom sheet dialogs.
 enum BottomSheetDialog { Dialog, BottomSheet }
 
-/// Shows a bottom sheet or a dialog based on the specified type.
 Future<dynamic> showBottomSheetOrDialog({
   required BuildContext context,
   required Widget child,
   BottomSheetDialog bottomSheetDialog = BottomSheetDialog.Dialog,
 }) {
   if (bottomSheetDialog == BottomSheetDialog.BottomSheet) {
-    // Show a bottom sheet.
     return showModalBottomSheet(context: context, builder: (_) => child);
   } else {
-    // Show a dialog.
     return showInDialog(context, builder: (_) => child);
   }
 }
 
-/// Retrieves package information asynchronously.
 Future<PackageInfoData> getPackageInfo() async {
   if (isAndroid || isIOS) {
     var data = await invokeNativeMethod(channelName, 'packageInfo');
 
     if (data != null && data is Map) {
-      // Parse package info data from native method result.
       return PackageInfoData(
         appName: data['appName'],
         packageName: data['packageName'],
@@ -406,11 +372,9 @@ Future<PackageInfoData> getPackageInfo() async {
         androidSDKVersion: data['androidSDKVersion'],
       );
     } else {
-      // Throw an error if data retrieval fails.
       throw errorSomethingWentWrong;
     }
   } else {
-    // Return empty package info for unsupported platforms.
     return PackageInfoData();
   }
 }

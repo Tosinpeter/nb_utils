@@ -22,9 +22,9 @@ class LanguageDataModel {
   static List<String> languages() {
     List<String> list = [];
 
-    for (var element in localeLanguageList) {
+    localeLanguageList.forEach((element) {
       list.add(element.languageCode.validate());
-    }
+    });
 
     return list;
   }
@@ -32,10 +32,10 @@ class LanguageDataModel {
   static List<Locale> languageLocales() {
     List<Locale> list = [];
 
-    for (var element in localeLanguageList) {
+    localeLanguageList.forEach((element) {
       list.add(Locale(element.languageCode.validate(),
           element.fullLanguageCode.validate()));
-    }
+    });
 
     return list;
   }
@@ -44,13 +44,13 @@ class LanguageDataModel {
 LanguageDataModel? getSelectedLanguageModel({String? defaultLanguage}) {
   LanguageDataModel? data;
 
-  for (var element in localeLanguageList) {
+  localeLanguageList.forEach((element) {
     if (element.languageCode ==
         getStringAsync(SELECTED_LANGUAGE_CODE,
             defaultValue: defaultLanguage ?? 'en')) {
       data = element;
     }
-  }
+  });
 
   return data;
 }

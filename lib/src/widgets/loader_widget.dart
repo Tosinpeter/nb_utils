@@ -20,14 +20,24 @@ class Loader extends StatefulWidget {
     this.value,
     this.valueColor,
     this.accentColor,
-    super.key,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   LoaderState createState() => LoaderState();
 }
 
 class LoaderState extends State<Loader> {
+  @override
+  void initState() {
+    super.initState();
+    init();
+  }
+
+  init() async {
+    //
+  }
+
   @override
   void setState(fn) {
     if (mounted) super.setState(fn);

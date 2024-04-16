@@ -18,7 +18,7 @@ class AnimatedItemWidget extends StatelessWidget {
   final FlipConfiguration? flipConfiguration;
 
   AnimatedItemWidget({
-    super.key,
+    Key? key,
     required this.child,
     this.listAnimationType = ListAnimationType.Slide,
     SlideConfiguration? slideConfiguration,
@@ -28,7 +28,8 @@ class AnimatedItemWidget extends StatelessWidget {
   })  : slideConfiguration = slideConfiguration ?? SlideConfiguration(),
         fadeInConfiguration = fadeInConfiguration ?? FadeInConfiguration(),
         scaleConfiguration = scaleConfiguration ?? ScaleConfiguration(),
-        flipConfiguration = flipConfiguration ?? FlipConfiguration();
+        flipConfiguration = flipConfiguration ?? FlipConfiguration(),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {

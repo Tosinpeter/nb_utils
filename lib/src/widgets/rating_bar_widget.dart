@@ -1,45 +1,23 @@
 import 'package:flutter/material.dart';
 
-/// Callback function signature for rating change events.
 typedef void RatingChangeCallback(double rating);
 
-/// A widget for displaying and interacting with a rating bar.
+/// RatingBarWidget
 // ignore: must_be_immutable
 class RatingBarWidget extends StatefulWidget {
-  /// The initial rating value.
+  // Initial Rating
   double rating;
 
-  /// The total number of rating items.
   final int itemCount;
-
-  /// Callback function for when the rating changes.
   final RatingChangeCallback? onRatingChanged;
-
-  /// The color of active rating items.
   final Color? activeColor;
-
-  /// The color of inactive rating items.
   final Color? inActiveColor;
-
-  /// The size of each rating item.
   final double size;
-
-  /// Flag indicating whether half ratings are allowed.
   final bool allowHalfRating;
-
-  /// The icon data for filled rating items.
   final IconData? filledIconData;
-
-  /// The icon data for half-filled rating items.
   final IconData? halfFilledIconData;
-
-  /// The default icon data for empty rating items.
   final IconData? defaultIconData;
-
-  /// The spacing between rating items.
   final double spacing;
-
-  /// Flag indicating whether the rating bar is disabled.
   final bool disable;
 
   RatingBarWidget({
@@ -55,8 +33,8 @@ class RatingBarWidget extends StatefulWidget {
     this.halfFilledIconData,
     this.allowHalfRating = false,
     this.disable = false,
-    super.key,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   _RatingBarWidgetState createState() => _RatingBarWidgetState();
@@ -68,21 +46,24 @@ class _RatingBarWidgetState extends State<RatingBarWidget> {
     Icon icon;
     if (index >= widget.rating) {
       icon = Icon(
-        widget.defaultIconData ??
-            (widget.halfFilledIconData ?? Icons.star_border),
+        widget.defaultIconData != null
+            ? widget.defaultIconData
+            : (widget.halfFilledIconData ?? Icons.star_border),
         color: widget.inActiveColor ?? Colors.grey,
         size: widget.size,
       );
     } else if (index > widget.rating - (widget.allowHalfRating ? 0.5 : 1.0) &&
         index < widget.rating) {
       icon = Icon(
-        widget.halfFilledIconData ?? Icons.star_half,
+        widget.halfFilledIconData != null
+            ? widget.halfFilledIconData
+            : Icons.star_half,
         color: widget.activeColor ?? Colors.grey,
         size: widget.size,
       );
     } else {
       icon = Icon(
-        widget.filledIconData ?? Icons.star,
+        widget.filledIconData != null ? widget.filledIconData : Icons.star,
         color: widget.activeColor ?? Colors.grey,
         size: widget.size,
       );
@@ -92,9 +73,8 @@ class _RatingBarWidgetState extends State<RatingBarWidget> {
       onTap: () {
         widget.rating = index + 1.0;
 
-        if (widget.onRatingChanged != null) {
+        if (this.widget.onRatingChanged != null)
           widget.onRatingChanged!(widget.rating);
-        }
 
         setState(() {});
       },
@@ -113,9 +93,8 @@ class _RatingBarWidgetState extends State<RatingBarWidget> {
 
         widget.rating = newRating;
 
-        if (widget.onRatingChanged != null) {
+        if (this.widget.onRatingChanged != null)
           widget.onRatingChanged!(newRating);
-        }
 
         setState(() {});
       },

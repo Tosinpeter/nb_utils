@@ -16,8 +16,8 @@ class GradientBorder extends StatelessWidget {
     this.borderRadius,
     this.padding = 0,
     splashColor,
-    super.key,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

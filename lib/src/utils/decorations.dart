@@ -45,7 +45,6 @@ BorderRadius radiusOnly({
   );
 }
 
-/// default box decoration for container
 Decoration boxDecorationDefault({
   BorderRadiusGeometry? borderRadius,
   Color? color,

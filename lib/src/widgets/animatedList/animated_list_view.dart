@@ -2,9 +2,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 
-/// A customizable animated ListView widget with various animation configurations.
 class AnimatedListView extends StatefulWidget {
-  // ListView.builder properties
+  /// ListView.builder properties
   final ScrollController? controller;
   final int? itemCount;
   final Widget Function(BuildContext, int) itemBuilder;
@@ -27,23 +26,23 @@ class AnimatedListView extends StatefulWidget {
   final bool reverse;
   final int? semanticChildCount;
 
-  // Animation Configuration
+  /// Animation Configuration
   final ListAnimationType listAnimationType;
+
   final SlideConfiguration? slideConfiguration;
   final FadeInConfiguration? fadeInConfiguration;
   final ScaleConfiguration? scaleConfiguration;
   final FlipConfiguration? flipConfiguration;
 
-  // Callbacks
   final VoidCallback? onNextPage;
   final VoidCallback? onPageScrollChange;
   final RefreshCallback? onSwipeRefresh;
-
   final bool disposeScrollController;
+
   final Widget? emptyWidget;
 
   AnimatedListView({
-    super.key,
+    Key? key,
     this.controller,
     this.itemCount,
     this.padding,
@@ -75,7 +74,7 @@ class AnimatedListView extends StatefulWidget {
     this.onSwipeRefresh,
     this.disposeScrollController = true,
     this.emptyWidget,
-  });
+  }) : super(key: key);
 
   @override
   State<AnimatedListView> createState() => _AnimatedListViewState();
