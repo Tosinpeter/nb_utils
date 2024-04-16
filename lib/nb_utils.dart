@@ -196,7 +196,6 @@ class NBUtils {
   }
 }
 
-/// Redirect to given widget without context
 Future<T?> push<T>(
   Widget widget, {
   bool isNewTask = false,
